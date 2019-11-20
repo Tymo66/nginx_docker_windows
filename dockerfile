@@ -3,7 +3,6 @@
 # Use command: 'docker build -t dsa_noldus_windowsservercore_nginx:1.0 .' for building image based on this Dockerfile
 # Execute command in Powershell from the same location where Dockerfile and nginx-1.17.0 folder are
 
-
 # Indicates that the windowsservercore image will be used as the base image.
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
@@ -21,8 +20,3 @@ EXPOSE 80
 
 ENTRYPOINT powershell c:\nginx\Start-Nginx.ps1
 
-# Defines command which will run when container is started
-# CMD ["nginx", "-g", "\"daemon off;\""]
-# ENTRYPOINT [ "powershell", "C:\\Nginx\\Start-Nginx.ps1" ]
-
-# CMD ["cmd.exe"]
