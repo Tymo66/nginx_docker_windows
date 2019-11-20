@@ -1,0 +1,6 @@
+# Root files
+.git
+.cache
+
+
+# Nginx non-runtimes

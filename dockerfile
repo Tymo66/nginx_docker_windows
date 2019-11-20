@@ -11,7 +11,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 LABEL maintainer="DSAH1Team@Noldus.NL"
 
 # Copies Nginx server files to the C: disk on the docker image
-COPY  nginx-1.17.0 C:/Nginx
+COPY  nginx-1.17.5 C:/Nginx
 
 # Defines working directory, where commands will be executed from entrypoint
 WORKDIR C:/Nginx
@@ -19,5 +19,10 @@ WORKDIR C:/Nginx
 # Exposes port 80
 EXPOSE 80
 
+ENTRYPOINT powershell c:\nginx\Start-Nginx.ps1
+
 # Defines command which will run when container is started
-CMD ["nginx", "-g", "\"daemon off;\""]
+# CMD ["nginx", "-g", "\"daemon off;\""]
+# ENTRYPOINT [ "powershell", "C:\\Nginx\\Start-Nginx.ps1" ]
+
+# CMD ["cmd.exe"]
