@@ -17,23 +17,30 @@ if (!(Test-Path $nginx_config_file))
     throw "nginx.config not found in folder .\conf, process aborted."
 }
 
-
-write-host "The cert folder is $nginx_cert_folder"
 $cert_pem_file = Get-ChildItem -Path $nginx_cert_folder\*.pem
 $cert_key_file = Get-ChildItem -Path $nginx_cert_folder\*.key
+if ($cert_pem_file -and $cert_key_file)
+{
+    write-host "The pem file is $cert_pem_file"
+    write-host "The key file is $cert_key_file"
 
-write-host "The pem file is $cert_pem_file"
-write-host "The key file is $cert_key_file"
+    # [string]$nginx_config_content = ""
+    # $nginx_config_content = Get-Content -path $nginx_config -Raw
+    
+    # $nginx_config_content -replace 'noldusdefault.cert.pem', $cert_pem_file | Set-Content -Path $nginx_config
+    # $nginx_config_content -replace 'noldusdefault.cert.key', $cert_key_file | Set-Content -Path $nginx_config
 
-# Read-Host -Prompt "Press Enter to continue ..."
+} else {
+    write-host "No certificates found in .\cert folder, using default certificates as defined in the nginx.config file."
 
-write-host "Step 1"
-Start-Process -FilePath "nginx.exe"
+    # The file nginx.config will define the default certificates that are build into the Docker image.
+}
 
-write-host "Step 2"
+write-host "Starting nginx.exe ..."
+& '.\nginx.exe' "-g daemon off;"
 
-Wait-Event
+# Wait indefitely, this prevents the Docker container from stopping, the PowerShell script is the main process.
 
-write-host "Step 3"
+write-host "Nginx has ended."
 
 
