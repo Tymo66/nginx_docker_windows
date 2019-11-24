@@ -1,2 +1,3 @@
-2019/11/20 16:24:38 [notice] 6868#3824: signal process started
-2019/11/20 16:58:07 [notice] 1264#4184: signal process started
+2019/11/24 15:36:02 [emerg] 3788#15464: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2019/11/24 15:45:54 [error] 2240#6552: *1 CreateFile() "D:\Develop\SDK and Libraries\Nginx\nginx_docker_windows\nginx-1.17.5/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8080", referrer: "http://localhost:8080/"
+2019/11/24 15:46:22 [emerg] 13756#9980: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
