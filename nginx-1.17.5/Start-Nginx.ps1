@@ -7,6 +7,10 @@
 #              
 
 
+
+
+
+
 [string]$nginx_cert_folder = ".\cert"                    # Folder in container where the certificate files are expected. This folder can be volume mounted to the host
 [string]$nginx_config_file = ".\conf\nginx.conf"         # Default folder where the Nginx config files are located 
 
@@ -24,11 +28,15 @@ if ($cert_pem_file -and $cert_key_file)
     write-host "The pem file is $cert_pem_file"
     write-host "The key file is $cert_key_file"
 
+    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdefault.cert.pem',$cert_pem_file) | Set-Content -Path $nginx_config_file
+    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdefault.cert.key',$cert_key_file) | Set-Content -Path $nginx_config_file
+
+
     # [string]$nginx_config_content = ""
-    # $nginx_config_content = Get-Content -path $nginx_config -Raw
+    # $nginx_config_content = Get-Content -path $nginx_config_file -Raw
     
-    # $nginx_config_content -replace 'noldusdefault.cert.pem', $cert_pem_file | Set-Content -Path $nginx_config
-    # $nginx_config_content -replace 'noldusdefault.cert.key', $cert_key_file | Set-Content -Path $nginx_config
+    # $nginx_config_content -replace 'noldusdefault.cert.pem', $cert_pem_file | Set-Content -Path $nginx_config_file
+    # $nginx_config_content -replace 'noldusdefault.cert.key', $cert_key_file | Set-Content -Path $nginx_config_file
 
 } else {
     write-host "No certificates found in .\cert folder, using default certificates as defined in the nginx.config file."
