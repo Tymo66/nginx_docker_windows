@@ -30,8 +30,8 @@ if ($cert_pem_file -and $cert_key_file)
     write-host "The key file is $cert_key_file"
 
     # Replace for the right certificate files (*.pem, *.key)
-    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdefault.cert.pem', $cert_pem_file) | Set-Content -Path $nginx_config_file
-    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdefault.cert.key', $cert_key_file) | Set-Content -Path $nginx_config_file
+    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdemo.cert.pem', $cert_pem_file) | Set-Content -Path $nginx_config_file
+    ((Get-Content -path $nginx_config_file -Raw) -replace 'noldusdemo.cert.key', $cert_key_file) | Set-Content -Path $nginx_config_file
 
 } else {
     # The file nginx.config will define the default certificates that are build into the Docker image.

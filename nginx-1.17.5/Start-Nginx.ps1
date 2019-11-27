@@ -11,11 +11,11 @@ param(
     [string]$ServerName
     )
 
-# Update nginx.config for SSL certificates and server name
+# A. Update nginx.config for SSL certificates and server name
 $ScriptToRun= $PSScriptRoot+"\ApplyCertificates-NginxConfig.ps1"
 & $ScriptToRun -ServerName $ServerName
 
-# Start Nginx and wait indefitely, this prevents the Docker container from stopping, the PowerShell script is the main process.
+# B. Start Nginx and wait indefitely, this prevents the Docker container from stopping, the PowerShell script is the main process.
 write-host "Starting nginx.exe ..."
 & '.\nginx.exe' "-g daemon off;"
 
