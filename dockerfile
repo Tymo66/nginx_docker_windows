@@ -18,8 +18,6 @@ WORKDIR C:/Nginx
 # Exposes port 80
 EXPOSE 80
 
-# syntax for passing ENV to ENTRYPOINT:
-# ENTRYPOINT powershell c:\nginx\Start-Nginx.ps1 -serverName %SERVERNAME%
-# docker.exe run -d --rm -e SERVERNAME="192.168.3.4"
-ENTRYPOINT powershell c:\nginx\Start-Nginx.ps1
+# Start PowerShell script, optionally passing in the server name or IP address
+ENTRYPOINT powershell c:\nginx\Start-Nginx.ps1 -ServerName %SERVER_NAME%
 
